@@ -2,14 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Mail, Lock, User, Eye, EyeOff, ArrowRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import toast from 'react-hot-toast'
 
 export default function SignupPage() {
-  const router = useRouter()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -23,6 +21,7 @@ export default function SignupPage() {
       return
     }
     setLoading(true)
+
     const supabase = createClient()
     const { error } = await supabase.auth.signUp({
       email,
@@ -32,15 +31,16 @@ export default function SignupPage() {
         emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     })
+
     if (error) {
       toast.error(error.message)
       setLoading(false)
       return
     }
-    toast.success('Account created! Check your email to verify.')
-    await new Promise(resolve => setTimeout(resolve, 300))
-    router.refresh()
-    router.push('/dashboard')
+
+    toast.success('Account created!')
+    // Hard redirect setelah signup
+    window.location.href = '/dashboard'
   }
 
   return (
@@ -128,13 +128,6 @@ export default function SignupPage() {
               )}
             </button>
           </form>
-
-          <p className="mt-4 text-xs text-center text-[--text-muted]">
-            By signing up, you agree to our{' '}
-            <a href="#" className="text-[--text-secondary] hover:text-[--text-primary]">Terms</a>{' '}
-            and{' '}
-            <a href="#" className="text-[--text-secondary] hover:text-[--text-primary]">Privacy Policy</a>.
-          </p>
         </div>
 
         <p className="text-center mt-6 text-sm text-[--text-secondary]">

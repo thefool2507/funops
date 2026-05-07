@@ -2,14 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Mail, Lock, Eye, EyeOff, ArrowRight, Github } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import toast from 'react-hot-toast'
 
 export default function LoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPw, setShowPw] = useState(false)
@@ -18,8 +16,10 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+
     const supabase = createClient()
     const { error } = await supabase.auth.signInWithPassword({ email, password })
+
     if (error) {
       toast.error(error.message)
       setLoading(false)
@@ -27,11 +27,8 @@ export default function LoginPage() {
     }
 
     toast.success('Welcome back!')
-
-    // Tunggu session benar-benar tersimpan sebelum navigate
-    await new Promise(resolve => setTimeout(resolve, 300))
-    router.refresh()
-    router.push('/dashboard')
+    // Hard redirect — paksa browser load ulang dengan cookie baru
+    window.location.href = '/dashboard'
   }
 
   const handleGithub = async () => {
@@ -51,8 +48,8 @@ export default function LoginPage() {
       >
         {/* Logo */}
         <div className="text-center mb-10">
-          <Link href="/" className="inline-flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-amber-400 flex items-center justify-center shadow-glow-amber">
+          <Link href="/" className="inline-flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-amber-400 flex items-center justify-center">
               <span className="text-sm font-bold text-obsidian-950">F</span>
             </div>
             <span className="font-display font-700 text-xl tracking-tight text-[--text-primary]">FunOps</span>
@@ -96,9 +93,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-medium text-[--text-secondary]">Password</label>
-              </div>
+              <label className="block text-xs font-medium text-[--text-secondary] mb-1.5">Password</label>
               <div className="relative">
                 <Lock size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[--text-muted]" />
                 <input
