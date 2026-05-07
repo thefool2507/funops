@@ -22,11 +22,16 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
       toast.error(error.message)
-    } else {
-      toast.success('Welcome back!')
-      router.push('/dashboard')
+      setLoading(false)
+      return
     }
-    setLoading(false)
+
+    toast.success('Welcome back!')
+
+    // Tunggu session benar-benar tersimpan sebelum navigate
+    await new Promise(resolve => setTimeout(resolve, 300))
+    router.refresh()
+    router.push('/dashboard')
   }
 
   const handleGithub = async () => {
@@ -35,21 +40,6 @@ export default function LoginPage() {
       provider: 'github',
       options: { redirectTo: `${window.location.origin}/auth/callback` },
     })
-  }
-
-  const handleDemo = async () => {
-    setLoading(true)
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({
-      email: 'demo@funops.app',
-      password: 'demo123456',
-    })
-    if (error) {
-      toast.error('Demo account unavailable. Please create an account.')
-    } else {
-      router.push('/dashboard')
-    }
-    setLoading(false)
   }
 
   return (
@@ -73,19 +63,19 @@ export default function LoginPage() {
 
         {/* Card */}
         <div className="card p-6">
-          {/* OAuth */}
+          {/* GitHub OAuth */}
           <button
             onClick={handleGithub}
-            className="w-full flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/8 text-sm font-medium text-[--text-primary] transition-all duration-200"
+            className="w-full flex items-center justify-center gap-2.5 px-4 py-2.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/[8%] text-sm font-medium text-[--text-primary] transition-all duration-200"
           >
             <Github size={16} />
             Continue with GitHub
           </button>
 
           <div className="flex items-center gap-3 my-5">
-            <div className="flex-1 h-px bg-white/8" />
+            <div className="flex-1 h-px bg-white/[8%]" />
             <span className="text-xs text-[--text-muted]">or continue with email</span>
-            <div className="flex-1 h-px bg-white/8" />
+            <div className="flex-1 h-px bg-white/[8%]" />
           </div>
 
           {/* Form */}
@@ -108,9 +98,6 @@ export default function LoginPage() {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-xs font-medium text-[--text-secondary]">Password</label>
-                <Link href="/forgot-password" className="text-xs text-amber-400 hover:text-amber-300">
-                  Forgot?
-                </Link>
               </div>
               <div className="relative">
                 <Lock size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[--text-muted]" />
@@ -144,13 +131,6 @@ export default function LoginPage() {
               )}
             </button>
           </form>
-
-          <button
-            onClick={handleDemo}
-            className="mt-3 w-full flex items-center justify-center py-2.5 text-xs text-[--text-muted] hover:text-[--text-secondary] transition-colors"
-          >
-            Try demo account
-          </button>
         </div>
 
         <p className="text-center mt-6 text-sm text-[--text-secondary]">

@@ -34,11 +34,13 @@ export default function SignupPage() {
     })
     if (error) {
       toast.error(error.message)
-    } else {
-      toast.success('Account created! Check your email to verify.')
-      router.push('/dashboard')
+      setLoading(false)
+      return
     }
-    setLoading(false)
+    toast.success('Account created! Check your email to verify.')
+    await new Promise(resolve => setTimeout(resolve, 300))
+    router.refresh()
+    router.push('/dashboard')
   }
 
   return (
