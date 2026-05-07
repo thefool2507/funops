@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark theme (default) */
+  --bg-base: #111009;
+  --bg-elevated: #181612;
+  --bg-card: #1e1b17;
+  --bg-subtle: #252119;
+  --bg-hover: #2c2820;
+  
+  --border: rgba(255,255,255,0.07);
+  --border-strong: rgba(255,255,255,0.12);
+  
+  --text-primary: #f0ece4;
+  --text-secondary: #9a8f86;
+  --text-muted: #5a5149;
+  
+  --accent-amber: #fbbf24;
+  --accent-amber-muted: rgba(251,191,36,0.12);
+  --accent-sage: #4ade80;
+  --accent-sage-muted: rgba(74,222,128,0.12);
+  --accent-coral: #fb7185;
+  --accent-coral-muted: rgba(251,113,133,0.12);
+  
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Selection */
+::selection {
+  background: rgba(251,191,36,0.2);
+  color: var(--accent-amber);
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-white/[7%] bg-[--bg-card] backdrop-blur-sm;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card:hover {
+    @apply border-white/10;
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium;
+    @apply bg-amber-400 text-obsidian-950 hover:bg-amber-300;
+    @apply transition-all duration-200 active:scale-95;
+    @apply shadow-sm;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium;
+    @apply text-[--text-secondary] hover:text-[--text-primary] hover:bg-white/5;
+    @apply transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium;
+    @apply text-coral-400 hover:bg-coral-400/10;
+    @apply transition-all duration-200;
+  }
+
+  .input {
+    @apply w-full px-3 py-2.5 rounded-lg text-sm;
+    @apply bg-white/5 border border-white/[8%] text-[--text-primary];
+    @apply placeholder:text-[--text-muted];
+    @apply focus:outline-none focus:ring-1 focus:ring-amber-400/50 focus:border-amber-400/40;
+    @apply transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium;
+  }
+
+  .kbd {
+    @apply inline-flex items-center px-1.5 py-0.5 rounded text-xs;
+    @apply border border-white/10 bg-white/5 text-[--text-secondary];
+    @apply font-mono;
+  }
+
+  .stat-card {
+    @apply card p-5 flex flex-col gap-3;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium;
+    @apply text-[--text-secondary] hover:text-[--text-primary] hover:bg-white/5;
+    @apply transition-all duration-200 cursor-pointer;
+  }
+
+  .nav-item.active {
+    @apply text-[--text-primary] bg-white/[8%];
+  }
+
+  /* Kanban column */
+  .kanban-col {
+    @apply flex flex-col gap-3 min-w-[300px] max-w-[340px] w-full;
+  }
+
+  .kanban-header {
+    @apply flex items-center justify-between px-1 mb-2;
+  }
+
+  .task-card {
+    @apply card p-4 cursor-pointer;
+    @apply hover:border-white/[12%] hover:-translate-y-0.5;
+    @apply transition-all duration-200;
+  }
+
+  /* Priority dot */
+  .priority-dot {
+    @apply w-2 h-2 rounded-full flex-shrink-0;
+  }
+
+  /* Glow effects */
+  .glow-amber {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.12), 0 0 40px rgba(251, 191, 36, 0.06);
+  }
+
+  .glow-sage {
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.12), 0 0 40px rgba(74, 222, 128, 0.06);
+  }
+}
+
+/* Noise texture overlay */
+.noise {
+  position: relative;
+}
+.noise::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Animated gradient bg */
+.gradient-mesh {
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(251,191,36,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(74,222,128,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 10%, rgba(251,113,133,0.02) 0%, transparent 40%),
+    var(--bg-base);
+}
+
+/* Drag and drop styles */
+.task-card[data-dragging="true"] {
+  @apply opacity-50 rotate-1 scale-105;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply rounded-lg bg-white/5;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Progress bar */
+.progress-bar {
+  @apply h-1 rounded-full bg-white/[8%] overflow-hidden;
+}
+.progress-fill {
+  @apply h-full rounded-full transition-all duration-500;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-sage));
+}
+
+/* Pomodoro timer */
+.timer-ring {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
