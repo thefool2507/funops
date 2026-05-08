@@ -186,4 +186,4 @@ MIT License — free to use, modify, and distribute.
 
 ---
 
-Built with ❤️ using Next.js + Supabase. Deploy it free in 5 minutes.
+Built with using Next.js + Supabase. Deploy it free.
