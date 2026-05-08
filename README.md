@@ -1,23 +1,23 @@
-# 🚀 FunOps — Task Management Redefined
+# FunOps — Task Management Redefined
 
 > A professional, elegant web-based task management tool for daily operations. Built with Next.js 14, Supabase, and deployed free on Vercel + Supabase.
 
 ![FunOps Dashboard](https://via.placeholder.com/1200x630/111009/fbbf24?text=FunOps+Dashboard)
 
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---|---|
-| 🗂 **Kanban Board** | Drag & drop tasks across Todo → In Progress → Done |
-| 📋 **All Tasks View** | Filterable, sortable list with bulk actions |
-| 📅 **Calendar View** | Monthly calendar with per-day task planning |
-| 📊 **Analytics** | Completion rates, priority charts, category breakdown |
-| ⏱ **Pomodoro Timer** | Built-in focus sessions with per-task tracking |
-| ⚡ **Quick Add** | Press `⌘K` to instantly add tasks anywhere |
-| 🔍 **Command Palette** | Navigate and search tasks without leaving keyboard |
-| 🔐 **Auth** | Email/password + GitHub OAuth via Supabase |
-| 📱 **Responsive** | Works on desktop, tablet, and mobile |
-| 🔔 **Realtime** | Live updates across tabs via Supabase Realtime |
+| **Kanban Board** | Drag & drop tasks across Todo → In Progress → Done |
+| **All Tasks View** | Filterable, sortable list with bulk actions |
+| **Calendar View** | Monthly calendar with per-day task planning |
+| **Analytics** | Completion rates, priority charts, category breakdown |
+| **Pomodoro Timer** | Built-in focus sessions with per-task tracking |
+| **Quick Add** | Press `⌘K` to instantly add tasks anywhere |
+| **Command Palette** | Navigate and search tasks without leaving keyboard |
+| **Auth** | Email/password + GitHub OAuth via Supabase |
+| **Responsive** | Works on desktop, tablet, and mobile |
+| **Realtime** | Live updates across tabs via Supabase Realtime |
 
 ## 🛠 Tech Stack
 
@@ -33,14 +33,14 @@
 - [Supabase](https://supabase.com) — PostgreSQL + Auth + Realtime + RLS
 - Row Level Security — users only see their own data
 
-## 🚀 Deploy in 5 minutes
+## Deploy in 5 minutes
 
 ### Step 1 — Clone & install
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/funops.git
 cd funops
-npm install
+pnpm install
 ```
 
 ### Step 2 — Create Supabase project (free)
@@ -92,7 +92,7 @@ Or via [vercel.com](https://vercel.com/new):
    - Callback URL: `https://your-project.supabase.co/auth/v1/callback`
 3. Paste Client ID and Secret into Supabase
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 funops/
@@ -130,7 +130,7 @@ funops/
     └── workflows/ci.yml  # GitHub Actions CI
 ```
 
-## 🗄 Database Schema
+## Database Schema
 
 ```sql
 tasks         — id, user_id, title, description, status, priority,
@@ -145,7 +145,7 @@ user_preferences  — id, user_id, theme, pomodoro_duration,
 
 All tables have **Row Level Security** — users can only read/write their own rows.
 
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts
 
 | Shortcut | Action |
 |---|---|
@@ -154,7 +154,7 @@ All tables have **Row Level Security** — users can only read/write their own r
 | `↵` | Select item |
 | `Esc` | Close modal / palette |
 
-## 🔧 Development
+## Development
 
 ```bash
 npm run dev      # Start dev server (http://localhost:3000)
@@ -162,7 +162,7 @@ npm run build    # Production build
 npm run lint     # ESLint check
 ```
 
-## 📦 Free Tier Limits
+## Free Tier Limits
 
 | Service | Free Limit | FunOps Usage |
 |---|---|---|
@@ -172,7 +172,7 @@ npm run lint     # ESLint check
 
 Both services are **free forever** for personal/small projects.
 
-## 🤝 Contributing
+## Contributing
 
 PRs welcome! Please:
 1. Fork the repo
