@@ -33,7 +33,7 @@ export default function Header({ userName, onSearch }: HeaderProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-baseline gap-2">
             <h2 className="font-display font-600 text-[--text-primary] text-sm truncate">
-              {getGreeting()}, {displayName} 👋
+              {getGreeting()}, {displayName} 
             </h2>
             <span className="text-xs text-[--text-muted] hidden sm:block">— {getMotivationalQuote()}</span>
           </div>
