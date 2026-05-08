@@ -5,27 +5,54 @@
 @tailwind utilities;
 
 :root {
-  /* Dark theme (default) */
-  --bg-base: #111009;
+  /* ── Light theme (default) ── */
+  --bg-base:     #f7f5f0;
+  --bg-elevated: #faf8f4;
+  --bg-card:     #ffffff;
+  --bg-subtle:   #f0ede6;
+  --bg-hover:    #ebe7de;
+
+  --border:       rgba(0,0,0,0.07);
+  --border-strong: rgba(0,0,0,0.12);
+
+  --text-primary:   #1a1610;
+  --text-secondary: #6b6058;
+  --text-muted:     #a89e94;
+
+  --accent-amber:       #d97706;
+  --accent-amber-muted: rgba(217,119,6,0.10);
+  --accent-sage:        #16a34a;
+  --accent-sage-muted:  rgba(22,163,74,0.10);
+  --accent-coral:       #e11d48;
+  --accent-coral-muted: rgba(225,29,72,0.10);
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.14);
+}
+
+.dark {
+  /* ── Dark theme ── */
+  --bg-base:     #111009;
   --bg-elevated: #181612;
-  --bg-card: #1e1b17;
-  --bg-subtle: #252119;
-  --bg-hover: #2c2820;
-  
-  --border: rgba(255,255,255,0.07);
+  --bg-card:     #1e1b17;
+  --bg-subtle:   #252119;
+  --bg-hover:    #2c2820;
+
+  --border:        rgba(255,255,255,0.07);
   --border-strong: rgba(255,255,255,0.12);
-  
-  --text-primary: #f0ece4;
+
+  --text-primary:   #f0ece4;
   --text-secondary: #9a8f86;
-  --text-muted: #5a5149;
-  
-  --accent-amber: #fbbf24;
+  --text-muted:     #5a5149;
+
+  --accent-amber:       #fbbf24;
   --accent-amber-muted: rgba(251,191,36,0.12);
-  --accent-sage: #4ade80;
-  --accent-sage-muted: rgba(74,222,128,0.12);
-  --accent-coral: #fb7185;
+  --accent-sage:        #4ade80;
+  --accent-sage-muted:  rgba(74,222,128,0.12);
+  --accent-coral:       #fb7185;
   --accent-coral-muted: rgba(251,113,133,0.12);
-  
+
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
   --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
@@ -185,6 +212,14 @@ body {
 
 /* Animated gradient bg */
 .gradient-mesh {
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(217,119,6,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(22,163,74,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 10%, rgba(225,29,72,0.03) 0%, transparent 40%),
+    var(--bg-base);
+}
+
+.dark .gradient-mesh {
   background: 
     radial-gradient(ellipse at 20% 20%, rgba(251,191,36,0.04) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 80%, rgba(74,222,128,0.03) 0%, transparent 50%),

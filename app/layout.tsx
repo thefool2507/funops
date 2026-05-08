@@ -42,6 +42,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <script dangerouslySetInnerHTML={{ __html: `
+    const t = localStorage.getItem('theme') || 'light';
+    if (t === 'dark') document.documentElement.classList.add('dark');
+    if (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.classList.add('dark');
+  `}} />
       <body className={`${bricolage.variable} ${dmSans.variable} ${jetbrains.variable} gradient-mesh noise`}>
         {children}
         <Toaster
