@@ -2,7 +2,7 @@
 
 > A professional, elegant web-based task management tool for daily operations. Built with Next.js 16, Supabase, and deployed free on Vercel + Supabase.
 
-![FunOps Dashboard](https://via.placeholder.com/1200x630/111009/fbbf24?text=FunOps+Dashboard)
+![FunOps Dashboard](https://github.com/thefool2507/funops/blob/main/funops.mp4?raw=true)
 
 ## Features
 
