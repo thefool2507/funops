@@ -11,9 +11,10 @@ interface HeaderProps {
 
 export default function Header({ userName, onSearch }: HeaderProps) {
   const [query, setQuery] = useState('')
-  const [time, setTime] = useState(new Date())
+  const [time, setTime] = useState<Date | null>(null)
 
   useEffect(() => {
+    setTime(new Date()) // set pertama kali di client
     const timer = setInterval(() => setTime(new Date()), 60000)
     return () => clearInterval(timer)
   }, [])
@@ -52,7 +53,7 @@ export default function Header({ userName, onSearch }: HeaderProps) {
 
         {/* Time */}
         <div className="hidden md:flex items-center gap-1 text-xs text-[--text-muted]">
-          <span>{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+          <span>{time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'}</span>
         </div>
 
         {/* Notifications */}

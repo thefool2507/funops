@@ -19,22 +19,32 @@ export function useTasks() {
     setLoading(false)
   }, [])
 
+  
   useEffect(() => {
-    fetchTasks()
-
-    // Realtime subscription
     const supabase = createClient()
+    // Nama unik tiap mount → tidak konflik di Strict Mode
+    const channelName = `tasks-changes-${Date.now()}`
+
+    supabase
+      .from('tasks')
+      .select('*')
+      .order('order_index', { ascending: true })
+      .then(({ data, error }) => {
+        if (!error && data) setTasks(data)
+        setLoading(false)
+      })
+
     const channel = supabase
-      .channel('tasks-changes')
-      .on('postgres_changes', {
-        event: '*',
-        schema: 'public',
-        table: 'tasks',
-      }, () => fetchTasks())
+      .channel(channelName)           // ← unik, tidak bentrok
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks' },
+        () => fetchTasks()
+      )
       .subscribe()
 
-    return () => { supabase.removeChannel(channel) }
-  }, [fetchTasks])
+    return () => {
+      supabase.removeChannel(channel) // cleanup benar-benar hapus channel ini
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const createTask = async (form: TaskFormData): Promise<Task | null> => {
     const supabase = createClient()
