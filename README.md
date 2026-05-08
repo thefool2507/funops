@@ -19,7 +19,7 @@
 | **Responsive** | Works on desktop, tablet, and mobile |
 | **Realtime** | Live updates across tabs via Supabase Realtime |
 
-## 🛠 Tech Stack
+## Tech Stack
 
 **Frontend (Free on Vercel)**
 - [Next.js 14](https://nextjs.org) — App Router + Server Components
