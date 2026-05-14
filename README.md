@@ -1,8 +1,7 @@
 # FunOps — Task Management Redefined
 
 > A professional, elegant web-based task management tool for daily operations. Built with Next.js 16, Supabase, and deployed free on Vercel + Supabase.
-
-![FunOps Dashboard](https://github.com/thefool2507/funops/blob/main/funops.mp4?raw=true)
+> 
 
 ## Features
 
@@ -145,14 +144,6 @@ user_preferences  — id, user_id, theme, pomodoro_duration,
 
 All tables have **Row Level Security** — users can only read/write their own rows.
 
-## Keyboard Shortcuts
-
-| Shortcut | Action |
-|---|---|
-| `⌘K` / `Ctrl+K` | Open command palette |
-| `↑↓` | Navigate command palette |
-| `↵` | Select item |
-| `Esc` | Close modal / palette |
 
 ## Development
 
@@ -162,28 +153,7 @@ npm run build    # Production build
 npm run lint     # ESLint check
 ```
 
-## Free Tier Limits
-
-| Service | Free Limit | FunOps Usage |
-|---|---|---|
-| **Vercel** | Unlimited deployments | Frontend hosting |
-| **Supabase** | 500MB DB, 2GB bandwidth | Backend + Auth + Realtime |
-| **Supabase Auth** | 50,000 MAU | Authentication |
-
-Both services are **free forever** for personal/small projects.
-
-## Contributing
-
-PRs welcome! Please:
-1. Fork the repo
-2. Create a branch: `git checkout -b feat/your-feature`
-3. Commit: `git commit -m 'feat: add your feature'`
-4. Push & open a PR
 
 ## 📄 License
 
 MIT License — free to use, modify, and distribute.
-
----
-
-Built with using Next.js + Supabase. Deploy it free.
